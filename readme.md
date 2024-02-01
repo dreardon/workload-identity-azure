@@ -63,7 +63,7 @@ Following the documentation, and as shown in the images below, you'll find yours
 ![Associate With Instance](assets/BC5zJJC5AadR9TY.png)
 
 ## Connect Identity Pool to Azure
-After completing these steps, there will be a generated client-config.json file which will be used by the example code to covert the temporary Okta credentials to short-lived Google credentials.
+After completing these steps, there will be a generated client-config.json file which will be used by the example code to covert the temporary Azure credentials to short-lived Google credentials.
 ```
 export PROJECT_ID=[Google Project ID]
 export PROJECT_NUMBER=[Google Project Number]
@@ -90,6 +90,13 @@ gcloud iam workload-identity-pools create-cred-config \
 ```
 
 ## Validate Inside of an Azure Virtual Machine
+Set the environment variable on the Azure VM:
+
+```
+export GOOGLE_APPLICATION_CREDENTIALS=[client-config.json Location]
+```
+Install the requirements and execute the python command.
+
 ![Install Dependancies](assets/7wPEeCbjgBRnxQE.png "Dependancies")
 ![Validate Workload Identity Federation](assets/6Fh3NjdYzUWgpb3.png "Validate")
 
