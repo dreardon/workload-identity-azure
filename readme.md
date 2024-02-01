@@ -54,13 +54,13 @@ Following the documentation, and as shown in the images below, you'll find yours
 - An APPLICATION_ID_URI which I later call "AUDIENCE"
 - A MANAGED_IDENTITY_OBJECT_ID which will end up being the "sub" claim when requesting tokens
 
-![Register An Application](images/5NpKjK7iQbYUXZr.png)
-![Where to Update the URI](images/6JBFGG4an4BuZAh.png)
-![Set the URI](images/5QUgF68UChJMsPo.png)
+![Register An Application](assets/5NpKjK7iQbYUXZr.png)
+![Where to Update the URI](assets/6JBFGG4an4BuZAh.png)
+![Set the URI](assets/5QUgF68UChJMsPo.png)
 
 ## Associate Managed Identity with an Instance
-![Create A Managed Identity](images/5jCRPHFhoMK5BT4.png)
-![Associate With Instance](images/BC5zJJC5AadR9TY.png)
+![Create A Managed Identity](assets/5jCRPHFhoMK5BT4.png)
+![Associate With Instance](assets/BC5zJJC5AadR9TY.png)
 
 ## Connect Identity Pool to Azure
 After completing these steps, there will be a generated client-config.json file which will be used by the example code to covert the temporary Okta credentials to short-lived Google credentials.
@@ -90,8 +90,8 @@ gcloud iam workload-identity-pools create-cred-config \
 ```
 
 ## Validate Inside of an Azure Virtual Machine
-![Install Dependancies](images/7wPEeCbjgBRnxQE.png)
-![Validate Workload Identity Federation](images/6Fh3NjdYzUWgpb3.png)
+![Install Dependancies](assets/7wPEeCbjgBRnxQE.png "Dependancies")
+![Validate Workload Identity Federation](assets/6Fh3NjdYzUWgpb3.png "Validate")
 
 ### For More Detail
 * https://cloud.google.com/iam/docs/configuring-workload-identity-federation#azure_3
