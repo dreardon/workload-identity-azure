@@ -1,0 +1,4 @@
+venvs
+.devcontainer
+client-config.json
+.DS_Store
