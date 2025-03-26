@@ -38,8 +38,7 @@ steps:
           "token_url": "https://sts.googleapis.com/v1/token",
           "credential_source": {
             "file": "$(Pipeline.Workspace)/.workload_identity.jwt"
-          },
-          "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/$(GoogleCloud.WorkloadIdentity.ServiceAccount):generateAccessToken"
+          }
         }
         EOF
         
