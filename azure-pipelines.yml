@@ -9,11 +9,45 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Initializing the Azure Pipeline Script
-  displayName: 'Initialize Azure Pipeline Script'
+variables:
+- name: Azure.WorkloadIdentity.Connection
+  value: google-cloud
+- name: GoogleCloud.WorkloadIdentity.ProjectNumber
+  value: 970973493627
+- name: GoogleCloud.WorkloadIdentity.Pool
+  value: azure-devops-pool
+- name: GoogleCloud.WorkloadIdentity.Provider
+  value: azure-devops-provider
+- name: GOOGLE_APPLICATION_CREDENTIALS
+  value: $(Pipeline.Workspace)/.workload_identity.wlconfig
 
-- script: |
-    pip install -r requirements.txt
-    python3 workload-identity.py
-  displayName: 'Run an example script with Workload Identity Federation'
+steps:
+  - task: AzureCLI@2
+    inputs:
+      connectedServiceNameARM: $(Azure.WorkloadIdentity.Connection)
+      addSpnToEnvironment: true
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        echo $idToken > $(Pipeline.Workspace)/.workload_identity.jwt
+        cat << EOF > $GOOGLE_APPLICATION_CREDENTIALS
+        {
+          "type": "external_account",
+          "audience": "//iam.googleapis.com/projects/$(GoogleCloud.WorkloadIdentity.ProjectNumber)/locations/global/workloadIdentityPools/$(GoogleCloud.WorkloadIdentity.Pool)/providers/$(GoogleCloud.WorkloadIdentity.Provider)",
+          "subject_token_type": "urn:ietf:params:oauth:token-type:jwt",
+          "token_url": "https://sts.googleapis.com/v1/token",
+          "credential_source": {
+            "file": "$(Pipeline.Workspace)/.workload_identity.jwt"
+          },
+          "service_account_impersonation_url": "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/$(GoogleCloud.WorkloadIdentity.ServiceAccount):generateAccessToken"
+        }
+        EOF
+        
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    displayName: 'Install dependencies'
+
+  - script: |
+      python3 workload-identity.py
+    displayName: 'Run an example script with Workload Identity Federation'
