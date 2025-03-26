@@ -6,9 +6,6 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
-
 variables:
 - name: Azure.WorkloadIdentity.Connection
   value: google-cloud
