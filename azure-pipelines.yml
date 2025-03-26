@@ -10,10 +10,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: echo Initializing the Azure Pipeline Script
+  displayName: 'Initialize Azure Pipeline Script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    pip install -r requirements.txt
+    python3 workload-identity.py
+  displayName: 'Run an example script with Workload Identity Federation'
