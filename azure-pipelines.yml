@@ -6,6 +6,9 @@
 trigger:
 - main
 
+pool:
+  name: default
+
 variables:
 - name: Azure.WorkloadIdentity.Connection
   value: google-cloud
