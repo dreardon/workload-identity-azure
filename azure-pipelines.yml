@@ -18,7 +18,7 @@ variables:
 - name: GoogleCloud.WorkloadIdentity.Pool
   value: azure-devops-pool
 - name: GoogleCloud.WorkloadIdentity.Provider
-  value: azure-devops-provider
+  value: azure-devops-provider-m365
 - name: GOOGLE_APPLICATION_CREDENTIALS
   value: $(Pipeline.Workspace)/.workload_identity.wlconfig
 
