@@ -6,7 +6,7 @@ pool:
 
 variables:
 - name: Azure.WorkloadIdentity.Connection
-  value: google-cloud
+  value: managed-identity-gcp-workload-identity
 - name: GoogleCloud.WorkloadIdentity.ProjectNumber
   value: 970973493627
 - name: GoogleCloud.WorkloadIdentity.Pool
